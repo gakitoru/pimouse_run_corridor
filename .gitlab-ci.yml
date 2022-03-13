@@ -1,0 +1,14 @@
+image: ubuntu:xenial
+stages:
+  - test
+
+job_1:
+  stage: test
+  script:
+    - sh ./test/gitlab_get_python.bash
+    - sh ./test/gitlab_prepare_dummy_files.bash
+    - sh ./test/step0.bash
+    - sh ./test/step1.bash
+    - sh ./test/gitlab_ros_build.bash
+    - source ./devel/setup.bash
+    - rostest pimouse_run_corridor wall_stop.launch
